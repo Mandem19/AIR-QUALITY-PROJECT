@@ -1,5 +1,10 @@
-public class Sensors {
+public class Sensors extends AbstractDescription{
 
+    public Sensors(String s) {
+        super(s);
+        
+    }
+/* 
     private String sensorID;
     private double latitude; 
     private double longitude; 
@@ -18,6 +23,6 @@ public class Sensors {
             this.longitude=-76.3439147576429;
         }
 
-    }
+    }*/
     
 }
