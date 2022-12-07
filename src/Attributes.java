@@ -1,85 +1,81 @@
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Attributes extends AbstractDescription{
 
-
-
-
+    private static final String PATH = "lib\\AttributeType.csv";
     private String attributeID;
     private String unit; 
 
 
-    public Attributes(){
-        
-    }
+    public Attributes(String attributeID) throws IOException{
+       
+        BufferedReader in = new BufferedReader(new FileReader(PATH));
+        try {
+            
+            String line; 
+            while((line = in.readLine()) != null){
+                String [] vals = line.split(";");
+                /*
+                 * Creates an array of 3 substrings, 
+                 * creates an array with 3 elements
+                 */
+                
+                 String firstElement = vals[0];
+                 String secondElement = vals[1];
+                 String thirdElement = vals[2];
 
-    /* 
-    private static final String ATTUNIT = "µg/m3";
-    private static final String DESO3 = "ozone content";
-    private static final String DESSO2 = "sulfur dioxide content";
-    private static final String DESNO2 = "nitrogen dioxide content";
-    private static final String DESPM10 = "fine particles content";
-    private static final String[] ATTTYPES = {"O3", "SO2", "NO2", "PM10"};
-    private String attributeID;
-    private String unit;
+                 if (attributeID.equalsIgnoreCase(firstElement)){
+                    this.attributeID=firstElement;
+                 this.unit=secondElement;
+                 setDescription(thirdElement);
+                 }
+                 
+                /*
+                 * Split the line at the comma so i have 2 numbers
+                 * Parse them both as numbers
+                 * create new object using those numbers
+                 */
 
-    public Attributes(String attID) {
-        this.unit = ATTUNIT;
-        for (String s : ATTTYPES) {
-            if(s.equalsIgnoreCase("O3") && attID.equalsIgnoreCase("O3")){
-                this.attributeID = attID;
-                setDescription(DESO3);
             }
-            if(s.equalsIgnoreCase("SO2") && attID.equalsIgnoreCase("SO2")){
-                this.attributeID = attID;
-                setDescription(DESSO2);
-            }
-            if(s.equalsIgnoreCase("NO2")&& attID.equalsIgnoreCase("NO2")){
-                this.attributeID = attID;
-                setDescription(DESNO2);
-            }
-            if(s.equalsIgnoreCase("PM10")&& attID.equalsIgnoreCase("PM10")){
-                this.attributeID = attID;
-                setDescription(DESPM10);
-            }
+        } catch (Exception e) {
+            
+            e.printStackTrace();
         }
+        in.close();
+        
         
         
     }
 
-    public String getAttributeID(){
+    public String getAttributeID() {
         return attributeID;
     }
 
-    public String getUnit(){
+    public String getUnit() {
         return unit;
     }
-    */
 
-    /* */
-    public static void main(String[] args) {
-     /* Attributes a = new Attributes("o3");
+
+    public static void main(String[] args) throws IOException {
+        System.out.println("NEW TEST ");
+        Attributes a = new Attributes("O3");
         Attributes b = new Attributes("SO2");
-        Attributes c = new Attributes("no2");
-        Attributes d = new Attributes("pm10");
-        Attributes e = new Attributes("x");
-        Attributes f = new Attributes("");
+        Attributes c = new Attributes("NO2");
+        Attributes d = new Attributes("PM10");
 
-        System.out.println("this is a test");
-        System.out.println(a.getAttributeID() + " " + a.getUnit() + " " + a.getDescription());
-        System.out.println(b.getAttributeID() + " " + b.getUnit() + " " + b.getDescription());
-        System.out.println(c.getAttributeID() + " " + c.getUnit() + " " + c.getDescription());
-        System.out.println(d.getAttributeID() + " " + d.getUnit() + " " + d.getDescription());
-        System.out.println("-----------------------------");
-        System.out.println( e.getAttributeID() + " " + e.getUnit() + " " + e.getDescription());
-        System.out.println( f.getAttributeID() + " " + f.getUnit() + " " + f.getDescription());
-        System.out.println("End of test");*/   
-        
+        Attributes e = new Attributes("");
+        Attributes f = new Attributes("X");
+
+
+        System.out.println(a.getAttributeID()+ " " + a.getUnit()+ " " + a.getDescription());
+        System.out.println(b.getAttributeID()+ " " + b.getUnit()+ " " + b.getDescription());
+        System.out.println(c.getAttributeID()+ " " + c.getUnit()+ " " + c.getDescription());
+        System.out.println(d.getAttributeID()+ " " + d.getUnit()+ " " + d.getDescription());
+        System.out.println("-------------------------------------------------------------");
+        System.out.println(e.getAttributeID()+ " " + e.getUnit()+ " " + e.getDescription());
+        System.out.println(f.getAttributeID()+ " " + f.getUnit()+ " " + f.getDescription());
     }
-
-
-
-
-
     
 }
