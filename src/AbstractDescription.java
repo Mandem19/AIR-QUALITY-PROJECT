@@ -1,9 +1,9 @@
 abstract class AbstractDescription {
 
-    private String description;
+    protected  String description;
 
-    public AbstractDescription(String s){
-        this.description=s;
+    public AbstractDescription(){
+        setDescription(description);;
     }
 
     public String getDescription(){
