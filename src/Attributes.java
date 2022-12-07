@@ -3,6 +3,17 @@
 public class Attributes extends AbstractDescription{
 
 
+
+
+    private String attributeID;
+    private String unit; 
+
+
+    public Attributes(){
+        
+    }
+
+    /* 
     private static final String ATTUNIT = "µg/m3";
     private static final String DESO3 = "ozone content";
     private static final String DESSO2 = "sulfur dioxide content";
@@ -12,7 +23,7 @@ public class Attributes extends AbstractDescription{
     private String attributeID;
     private String unit;
 
-    public Attributes(String attID) throws IllegalArgumentException{
+    public Attributes(String attID) {
         this.unit = ATTUNIT;
         for (String s : ATTTYPES) {
             if(s.equalsIgnoreCase("O3") && attID.equalsIgnoreCase("O3")){
@@ -43,9 +54,11 @@ public class Attributes extends AbstractDescription{
     public String getUnit(){
         return unit;
     }
+    */
 
+    /* */
     public static void main(String[] args) {
-        Attributes a = new Attributes("o3");
+     /* Attributes a = new Attributes("o3");
         Attributes b = new Attributes("SO2");
         Attributes c = new Attributes("no2");
         Attributes d = new Attributes("pm10");
@@ -60,7 +73,7 @@ public class Attributes extends AbstractDescription{
         System.out.println("-----------------------------");
         System.out.println( e.getAttributeID() + " " + e.getUnit() + " " + e.getDescription());
         System.out.println( f.getAttributeID() + " " + f.getUnit() + " " + f.getDescription());
-        System.out.println("End of test");
+        System.out.println("End of test");*/   
         
     }
 

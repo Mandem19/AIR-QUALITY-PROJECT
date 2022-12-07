@@ -1,4 +1,10 @@
+import java.util.HashMap;
+
 public class Sensors extends AbstractDescription{
+
+/* 
+    private static final String[] SENTYPES = {"Sensor0", "Sensor1", "Sensor2", "Sensor3", 
+    "Sensor4", "Sensor5", "Sensor6", "Sensor7","Sensor8","Sensor9"};*/
 
     private String sensorID;
     private double latitude; 
