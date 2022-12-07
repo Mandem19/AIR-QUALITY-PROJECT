@@ -1,7 +1,13 @@
 public class Sensors extends AbstractDescription{
 
-    public Sensors(String s) {
-        super(s);
+    private String sensorID;
+    private double latitude; 
+    private double longitude; 
+
+
+
+    public Sensors(String sensorID) {
+
         
     }
 /* 
