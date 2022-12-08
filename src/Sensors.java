@@ -8,11 +8,10 @@ public class Sensors extends AbstractDescription{
     private static final String[] SENTYPES = {"Sensor0", "Sensor1", "Sensor2", "Sensor3", 
     "Sensor4", "Sensor5", "Sensor6", "Sensor7","Sensor8","Sensor9"};*/
 
-    private static final String PATH = "lib\\Sensors.csv";
+    private static final String PATH = "lib\\SensorsData.csv";
     private String sensorID;
     private double latitude; 
     private double longitude; 
-
 
 
     public Sensors(String sensorID) throws IOException{
@@ -21,23 +20,20 @@ public class Sensors extends AbstractDescription{
         try {
             //(filename = br.readLine()) !=null && filename.trim().length()>0
             String line; 
-            while(((line = in.readLine()) != null) && (line.trim().length()>0)){
+            while((line = in.readLine()) != null){
                 String [] vals = line.split(";");
                 /*
                  * Creates an array of 3 substrings, 
                  * creates an array with 3 elements
                  */
-                
                  String firstElement = vals[0];
                  String secondElement = vals[1];
                  String thirdElement = vals[2];
-                 String fourthElement = vals[3];
 
                  if (sensorID.equalsIgnoreCase(firstElement)){
                     this.sensorID=firstElement;
                     this.latitude=Double.parseDouble(secondElement);
                     this.longitude=Double.parseDouble(thirdElement);
-                    setDescription(fourthElement);
                  }
                  
                 /*
@@ -69,36 +65,33 @@ public class Sensors extends AbstractDescription{
 
 
     public static void main(String[] args) throws IOException{
-        Sensors a = new Sensors("Sensors0");
-        Sensors b = new Sensors("Sensors1");
-        Sensors c = new Sensors("Sensors2");
-        Sensors d = new Sensors("Sensors3");
-        Sensors e = new Sensors("Sensors4");
-        Sensors f = new Sensors("Sensors5");
-        Sensors g = new Sensors("Sensors6");
-        Sensors h = new Sensors("Sensors7");
-        Sensors i = new Sensors("Sensors8");
-        Sensors j = new Sensors("Sensors9");
-        Sensors k = new Sensors("Sensors11");
-        Sensors l = new Sensors("");
-
+        Sensors a = new Sensors("Sensor0");
+        Sensors b = new Sensors("Sensor1");
+        Sensors c = new Sensors("Sensor2");
+        Sensors d = new Sensors("Sensor3");
+        Sensors e = new Sensors("Sensor4");
+        Sensors f = new Sensors("Sensor5");
+        Sensors g = new Sensors("Sensor6");
+        Sensors h = new Sensors("Sensor7");
+        Sensors i = new Sensors("Sensor8");
+        Sensors j = new Sensors("Sensor9");
+        Sensors x = new Sensors("Sensor10");
+        Sensors y = new Sensors("");
+       
         System.out.println("This is a test: ");
-        System.out.println(a.getSensorID() + " " + a.getLatitude() + " " + a.getLongtitude() + " " + a.getDescription());
-        System.out.println(b.getSensorID() + " " + b.getLatitude() + " " + b.getLongtitude() + " " + b.getDescription());
-        System.out.println(c.getSensorID() + " " + c.getLatitude() + " " + c.getLongtitude() + " " + c.getDescription());
-        System.out.println(d.getSensorID() + " " + d.getLatitude() + " " + d.getLongtitude() + " " + d.getDescription());
-        System.out.println(e.getSensorID() + " " + e.getLatitude() + " " + e.getLongtitude() + " " + e.getDescription());
-        System.out.println(f.getSensorID() + " " + f.getLatitude() + " " + f.getLongtitude() + " " + f.getDescription());
-        System.out.println(g.getSensorID() + " " + g.getLatitude() + " " + g.getLongtitude() + " " + g.getDescription());
-        System.out.println(h.getSensorID() + " " + h.getLatitude() + " " + h.getLongtitude() + " " + h.getDescription());
-        System.out.println(i.getSensorID() + " " + i.getLatitude() + " " + i.getLongtitude() + " " + i.getDescription());
-        System.out.println(j.getSensorID() + " " + j.getLatitude() + " " + j.getLongtitude() + " " + j.getDescription());
+        System.out.println(a.getSensorID() + " " + a.getLatitude() + " " + a.getLongtitude());
+        System.out.println(b.getSensorID() + " " + b.getLatitude() + " " + b.getLongtitude());
+        System.out.println(c.getSensorID() + " " + c.getLatitude() + " " + c.getLongtitude());
+        System.out.println(d.getSensorID() + " " + d.getLatitude() + " " + d.getLongtitude());
+        System.out.println(e.getSensorID() + " " + e.getLatitude() + " " + e.getLongtitude());
+        System.out.println(f.getSensorID() + " " + f.getLatitude() + " " + f.getLongtitude());
+        System.out.println(g.getSensorID() + " " + g.getLatitude() + " " + g.getLongtitude());
+        System.out.println(h.getSensorID() + " " + h.getLatitude() + " " + h.getLongtitude());
+        System.out.println(i.getSensorID() + " " + i.getLatitude() + " " + i.getLongtitude());
+        System.out.println(j.getSensorID() + " " + j.getLatitude() + " " + j.getLongtitude());
         System.out.println("---------------------------------------------------------------------------------------");
-        System.out.println(k.getSensorID() + " " + k.getLatitude() + " " + k.getLongtitude() + " " + k.getDescription());
-        System.out.println(l.getSensorID() + " " + l.getLatitude() + " " + l.getLongtitude() + " " + l.getDescription());
-
-
-
+        System.out.println(x.getSensorID() + " " + x.getLatitude() + " " + x.getLongtitude());
+        System.out.println(y.getSensorID() + " " + y.getLatitude() + " " + y.getLongtitude());
 
         
     }
