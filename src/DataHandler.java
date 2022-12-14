@@ -10,58 +10,71 @@ public class DataHandler {
     //C:\Users\jerem\OneDrive\Skrivbord\SoeJavaProject\AIR-QUALITY-PROJECT\lib\data_10sensors_1year.csv
     //"lib\\data_10sensors_1year.csv"
     //C:\\Users\\jerem\\OneDrive\\Skrivbord\\SoeJavaProject\\AIR-QUALITY-PROJECT\\lib\\data_10sensors_1year.csv
-
+    private static List<Data> listOfDatas = new ArrayList<>();
 
 
     public static void main(String[] args) throws IOException{
         
 
         List<Data> datas = readDataFromCSV(PATH);
-
+            
         for (Data d: datas){
-            System.out.println(d);
+            System.out.println(d.toString());
         }
+
+ 
+        
+ /* 
+ for (int i = 0; i <= datas.size() - 1; i++){
+            System.out.println(datas.get(i).toString());
+        }
+  * 
+  */
+        
         
     }
 
 
     private static List<Data> readDataFromCSV(String fileName) throws IOException{
-        List<Data> listOfDatas = new ArrayList<>();
+       
         BufferedReader in = new BufferedReader(new FileReader(PATH));
 
         try {
             String line; 
 
             while((line = in.readLine()) != null){
-
-                
                 String [] rows = line.split(";");
-
                 Data data = createData(rows);
-
                 listOfDatas.add(data);
+               
 
+                /*
+                 * for(String index: row){
+                    System.out.print(index);
+                   // System.out.printf("%-10s", index);
+                }
+                 */
+                
+
+                 
+                
+                return listOfDatas;
+            
             } 
         } catch (Exception e) {
             e.printStackTrace();
         }
         in.close();
-        return listOfDatas;
+        return null;
     }
 
 
     private static Data createData(String [] metaData){
-        //System.out.print(metaData[0]);
-        //System.out.print(metaData[1]);
-      //  System.out.print(metaData[2]);
-       // System.out.print(metaData[3]);
-        String timestamp = metaData[0];
+        String timestamp = metaData[0].replaceAll("��", "");
         String sensorID = metaData[1];
         String attributeID = metaData[2];
-        //System.out.println(metaData[3].replaceAll("([^0-9](?=[0-9])|[^0-9](?=\\.))", ""));
         Double value = Double.parseDouble(metaData[3].replaceAll("([^0-9](?=[0-9])|[^0-9](?=\\.))", ""));
         return new Data(timestamp, sensorID, attributeID, value);
-
     }
     
 }

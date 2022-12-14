@@ -1,3 +1,4 @@
+//import java.util.ArrayList;
 
 public class Data {
 
@@ -5,6 +6,7 @@ public class Data {
     private String sensorID;
     private String attributeID;
     private Double value; 
+   // ArrayList<Data> dataList = new ArrayList<>();
 
 
    public Data(String timestamp, String sensorID, String attributeID, Double value) {
@@ -12,6 +14,9 @@ public class Data {
     this.sensorID = sensorID;
     this.attributeID = attributeID;
     this.value = value;
+
+   // Data d = new Data(timestamp, sensorID, attributeID, value);
+   // dataList.add(d);
 }
     
 
