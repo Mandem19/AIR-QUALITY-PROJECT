@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class DataNotWorking {
+public class XNotUsedDataNotWorking {
 
     private static final String PATH = "lib\\data_10sensors_1year.csv";
     private String timestamp;
@@ -11,7 +11,7 @@ public class DataNotWorking {
     private Double value; 
 
    
-    public DataNotWorking(Double value) throws IOException{
+    public XNotUsedDataNotWorking(Double value) throws IOException{
 
         BufferedReader in = new BufferedReader(new FileReader(PATH));
         try {
@@ -65,12 +65,12 @@ public class DataNotWorking {
 
 
     public static void main(String[] args) throws IOException{
-        DataNotWorking a = new DataNotWorking(0.93);
-        DataNotWorking b = new DataNotWorking(0.0);
-        DataNotWorking c = new DataNotWorking(17.8902017543936);
-        DataNotWorking d = new DataNotWorking(44.5797973028766);
-        DataNotWorking f = new DataNotWorking(172.798449176892);
-        DataNotWorking e = new DataNotWorking(null);
+        XNotUsedDataNotWorking a = new XNotUsedDataNotWorking(0.93);
+        XNotUsedDataNotWorking b = new XNotUsedDataNotWorking(0.0);
+        XNotUsedDataNotWorking c = new XNotUsedDataNotWorking(17.8902017543936);
+        XNotUsedDataNotWorking d = new XNotUsedDataNotWorking(44.5797973028766);
+        XNotUsedDataNotWorking f = new XNotUsedDataNotWorking(172.798449176892);
+        XNotUsedDataNotWorking e = new XNotUsedDataNotWorking(null);
        
 
         System.out.println("Wrong value test");
