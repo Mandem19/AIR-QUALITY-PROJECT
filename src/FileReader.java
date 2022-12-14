@@ -17,7 +17,8 @@ public class FileReader {
                 String[] row = line.split(";");
 
                 for(String index: row){
-                    System.out.printf("%-10s", index);
+                    System.out.print(index);
+                   // System.out.printf("%-10s", index);
                 }
                 System.out.println();
 
@@ -29,17 +30,7 @@ public class FileReader {
           
         }
         
-        /* 
-        finally{
-            try {
-                reader.close();
-            } catch (IOException e) {
-               
-                e.printStackTrace();
-            }
-
-        }
-        */
+      
         reader.close();
 
     }

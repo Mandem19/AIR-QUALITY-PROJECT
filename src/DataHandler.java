@@ -46,10 +46,7 @@ public class DataHandler {
             e.printStackTrace();
         }
         in.close();
-        
-
-
-        return null;
+        return listOfDatas;
     }
 
 
