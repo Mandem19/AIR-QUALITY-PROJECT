@@ -6,10 +6,6 @@ import java.util.*;
 public class DataHandler {
 
     private static final String PATH =  "lib\\data_10sensors_1year.csv";
-
-    //C:\Users\jerem\OneDrive\Skrivbord\SoeJavaProject\AIR-QUALITY-PROJECT\lib\data_10sensors_1year.csv
-    //"lib\\data_10sensors_1year.csv"
-    //C:\\Users\\jerem\\OneDrive\\Skrivbord\\SoeJavaProject\\AIR-QUALITY-PROJECT\\lib\\data_10sensors_1year.csv
     private static List<Data> listOfDatas = new ArrayList<>();
 
 
@@ -22,14 +18,6 @@ public class DataHandler {
             System.out.println(d.toString());
         }
 
- 
-        
- /* 
- for (int i = 0; i <= datas.size() - 1; i++){
-            System.out.println(datas.get(i).toString());
-        }
-  * 
-  */
         
         
     }
@@ -46,26 +34,16 @@ public class DataHandler {
                 String [] rows = line.split(";");
                 Data data = createData(rows);
                 listOfDatas.add(data);
-               
-
-                /*
-                 * for(String index: row){
-                    System.out.print(index);
-                   // System.out.printf("%-10s", index);
-                }
-                 */
+                line = in.readLine();
                 
-
-                 
-                
-                return listOfDatas;
-            
             } 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+            in.close();
         }
-        in.close();
-        return null;
+        
+        return listOfDatas;
     }
 
 
