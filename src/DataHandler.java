@@ -2,27 +2,60 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DataHandler {
 
     private static final String PATH =  "lib\\data_10sensors_1year.csv";
     private static List<Data> listOfDatas = new ArrayList<>();
+    //private static List<Data> listOfDatasForSensor = new ArrayList<>();
 
+
+    /*
+     * 
+     * This timestamp 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+
+
+  
 
     public static void main(String[] args) throws IOException{
         
+/*
+ *  List<Data> dataList = readDataFromCSV(PATH);
+ for (Data data : dataList) {
+    System.out.println(data.toString());
+ }
+ */
 
-        List<Data> datas = readDataFromCSV(PATH);
-            
-        for (Data d: datas){
-            System.out.println(d.toString());
+ List<Data> list = getDataForSensor("Sensor0");
+ for (Data data : list) {
+    System.out.println(data.toString());
+ }
+
+}
+ 
+
+
+ /*
+  * List<Data> dataList = readDataFromCSV(PATH);
+ //List<Data> dataListWithSensorId = filterBySensorId(dataList, "Sensor0");
+
+        for (Data data : dataListWithSensorId) {
+            System.out.print(data.toString());
         }
-
-        
-        
+       
     }
 
-
+  */
+ 
     private static List<Data> readDataFromCSV(String fileName) throws IOException{
        
         BufferedReader in = new BufferedReader(new FileReader(PATH));
@@ -45,6 +78,59 @@ public class DataHandler {
         
         return listOfDatas;
     }
+
+
+    /*
+     * 3. Find the values that characterise air quality at a given place, GET all the values at a given place, eg for sensor0, get all measurments 
+     * 
+     * For all sensorX get all the values ex attributeX, attributeY 
+     * Give the mean airquality of that for each attributeX or Y etc
+     */
+
+     private static List<Data> getDataForSensor(String sensID) throws IOException{
+        List<Data> allData = readDataFromCSV(PATH);
+        List<Data> listForSensor = new ArrayList<>();
+
+        for (Data data : allData) {
+            if(data.getSensorID().equalsIgnoreCase(sensID)){
+                listForSensor.add(data);
+            }            
+        }
+        return listForSensor;
+     }
+
+
+        /*
+         * 
+         * return persons.stream()
+                      .filter(p -> p.getNationality().equals(nationality))
+                      .collect(Collectors.toList());
+         */
+
+        
+       // List<Data> listOfDatasForSensor = new ArrayList<>();
+        
+
+        /*
+         * for(Data d: allData){
+            System.out.println(d.getSensorID());
+            listOfDatas.add(d);
+        }
+         * 
+         */
+
+     
+
+     /*
+      *  public static List<Data> filterBySensorId(List<Data> dataList, String sensorId) {
+        return dataList.stream()
+                       .filter(d -> d.getSensorID().equalsIgnoreCase(sensorId))
+                       .collect(Collectors.toList());
+    }
+      */
+
+    
+
 
 
     private static Data createData(String [] metaData){
