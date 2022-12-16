@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "AIR-QUALITY-PROJECT_beb88bec"
+        },
+        {
+            "type": "java",
+            "name": "Launch Attributes",
+            "request": "launch",
+            "mainClass": "Attributes",
+            "projectName": "AIR-QUALITY-PROJECT_beb88bec"
+        },
+        {
+            "type": "java",
+            "name": "Launch DataHandler",
+            "request": "launch",
+            "mainClass": "DataHandler",
+            "projectName": "AIR-QUALITY-PROJECT_beb88bec"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainFrame",
+            "request": "launch",
+            "mainClass": "MainFrame",
+            "projectName": "AIR-QUALITY-PROJECT_beb88bec"
+        },
+        {
+            "type": "java",
+            "name": "Launch Sensors",
+            "request": "launch",
+            "mainClass": "Sensors",
+            "projectName": "AIR-QUALITY-PROJECT_beb88bec"
+        },
+        {
+            "type": "java",
+            "name": "Launch XFileReader",
+            "request": "launch",
+            "mainClass": "XFileReader",
+            "projectName": "AIR-QUALITY-PROJECT_beb88bec"
+        },
+        {
+            "type": "java",
+            "name": "Launch XNotUsedDataNotWorking",
+            "request": "launch",
+            "mainClass": "XNotUsedDataNotWorking",
+            "projectName": "AIR-QUALITY-PROJECT_beb88bec"
+        }
+    ]
+}
