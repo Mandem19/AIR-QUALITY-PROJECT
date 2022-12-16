@@ -1,10 +1,8 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,12 +16,16 @@ public class DataHandler {
 
         List<Data> dataListX = readDataFromCSV(PATH);
         List<Data> dataListWithSensorId = filterBySensorId(dataListX, "Sensor7");
-        System.out.println(dataListWithSensorId.size());
-        System.out.println("2");
         for (Data data : dataListWithSensorId) {
-            System.out.println("");
             System.out.println(data.toString());
         }
+
+        String a = getMeanSensor(filterBySensorId(readDataFromCSV(PATH), "Sensor7"), "Sensor7");
+        System.out.print(a);
+        String c = getMeanSensor(filterBySensorId(readDataFromCSV(PATH), "Sensor9"), "Sensor9");
+        System.out.print(c);
+        String b = getMeanSensor(filterBySensorId(readDataFromCSV(PATH), "Sensor"), "Sensor");
+        System.out.print(b);
 
     }
 
@@ -60,6 +62,40 @@ public class DataHandler {
         return dataList.stream()
                 .filter(d -> d.getSensorID().equalsIgnoreCase(sensorId))
                 .collect(Collectors.toList());
+    }
+
+    private static String getMeanSensor(List<Data> dataList, String sensorId) {
+        List<Data> list = filterBySensorId(dataList, sensorId);
+        int counter = 0;
+        String a = "";
+        Double aa = 0.0;
+        String b = "";
+        Double bb = 0.0;
+        String c = "";
+        Double cc = 0.0;
+        String d = "";
+        Double dd = 0.0;
+        for (Data data : list) {
+            if (data.getAttributeID().equalsIgnoreCase("O3")) {
+                aa += data.getValue();
+            }
+            if (data.getAttributeID().equalsIgnoreCase("SO2")) {
+                bb += data.getValue();
+            }
+            if (data.getAttributeID().equalsIgnoreCase("NO2")) {
+                cc += data.getValue();
+            }
+            if (data.getAttributeID().equalsIgnoreCase("PM10")) {
+                dd += data.getValue();
+            }
+            counter++;
+        }
+
+        return "Air quality measurements for sensor: " + sensorId + "\n" +
+                "O3: " + (aa / counter) + "\n" +
+                "SO2: " + (bb / counter) + "\n" +
+                "NO2 " + (cc / counter) + "\n" +
+                "PM10 " + (dd / counter) + "\n";
     }
 
     private static Data createData(String[] metaData) {
