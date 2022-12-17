@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,22 +12,39 @@ public class DataHandler {
 
     private static final String PATH = "lib\\10sens.csv";
 
+    private static final Date New = null;
+
     private static List<Data> listOfDatas = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
 
-        List<Data> dataListX = readDataFromCSV(PATH);
-        List<Data> dataListWithSensorId = filterBySensorId(dataListX, "Sensor7");
-        for (Data data : dataListWithSensorId) {
-            System.out.println(data.toString());
-        }
+        /*
+         * String exampleString = "2017-12-30T23:31:05.7830000";
+         * SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
+         * 
+         * // DateTimeFormatter format =
+         * // DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
+         * Date dt = New SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
+         * System.out.println(dt);
+         */
 
-        String a = getMeanSensor(filterBySensorId(readDataFromCSV(PATH), "Sensor7"), "Sensor7");
-        System.out.print(a);
-        String c = getMeanSensor(filterBySensorId(readDataFromCSV(PATH), "Sensor9"), "Sensor9");
-        System.out.print(c);
-        String b = getMeanSensor(filterBySensorId(readDataFromCSV(PATH), "Sensor"), "Sensor");
-        System.out.print(b);
+        List<Data> d = readDataFromCSV(PATH);
+        System.out.println(d.size());
+        System.out.println(getAirQualityForAttribute(d, "SO2"));
+        System.out.println(getAirQualityForAttribute(d, "NO2"));
+        System.out.println(getAirQualityForAttribute(d, "O3"));
+        System.out.println(getAirQualityForAttribute(d, "PM10"));
+        System.out.println();
+        System.out.println(getAirQualityForSensor(d, "Sensor0"));
+        System.out.println(getAirQualityForSensor(d, "Sensor1"));
+        System.out.println(getAirQualityForSensor(d, "Sensor2"));
+        System.out.println(getAirQualityForSensor(d, "Sensor3"));
+        System.out.println(getAirQualityForSensor(d, "Sensor4"));
+        System.out.println(getAirQualityForSensor(d, "Sensor5"));
+        System.out.println(getAirQualityForSensor(d, "Sensor6"));
+        System.out.println(getAirQualityForSensor(d, "Sensor7"));
+        System.out.println(getAirQualityForSensor(d, "Sensor8"));
+        System.out.println(getAirQualityForSensor(d, "Sensor9"));
 
     }
 
@@ -38,25 +57,15 @@ public class DataHandler {
                 String[] rows = line.split(";");
                 Data data = createData(rows);
                 listOfDatas.add(data);
-                line = in.readLine();
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             in.close();
         }
-
+        System.out.println("lwn " + listOfDatas.size());
         return listOfDatas;
     }
-
-    /*
-     * 3. Find the values that characterise air quality at a given place, GET all
-     * the values at a given place, eg for sensor0, get all measurments
-     * 
-     * For all sensorX get all the values ex attributeX, attributeY
-     * Give the mean airquality of that for each attributeX or Y etc
-     */
 
     private static List<Data> filterBySensorId(List<Data> dataList, String sensorId) {
         return dataList.stream()
@@ -64,46 +73,76 @@ public class DataHandler {
                 .collect(Collectors.toList());
     }
 
-    private static String getMeanSensor(List<Data> dataList, String sensorId) {
+    private static String getAirQualityForSensor(List<Data> dataList, String sensorId) {
         List<Data> list = filterBySensorId(dataList, sensorId);
-        int counter = 0;
-        String a = "";
-        Double aa = 0.0;
-        String b = "";
-        Double bb = 0.0;
-        String c = "";
-        Double cc = 0.0;
-        String d = "";
-        Double dd = 0.0;
+        HashMap<String, Double> x = new HashMap<>();
+        HashMap<String, Integer> counter = new HashMap<>();
+
         for (Data data : list) {
-            if (data.getAttributeID().equalsIgnoreCase("O3")) {
-                aa += data.getValue();
+            if (x.containsKey(data.getAttributeID())) {
+                x.put(data.getAttributeID(), x.get(data.getAttributeID()) + data.getValue());
+                counter.put(data.getAttributeID(), counter.get(data.getAttributeID()) + 1);
+            } else {
+                x.put(data.getAttributeID(), data.getValue());
+                counter.put(data.getAttributeID(), 1);
             }
-            if (data.getAttributeID().equalsIgnoreCase("SO2")) {
-                bb += data.getValue();
-            }
-            if (data.getAttributeID().equalsIgnoreCase("NO2")) {
-                cc += data.getValue();
-            }
-            if (data.getAttributeID().equalsIgnoreCase("PM10")) {
-                dd += data.getValue();
-            }
-            counter++;
+        }
+        String result = "";
+        for (String key : x.keySet()) {
+            x.put(key, x.get(key) / counter.get(key));
+            result += key + ": \t\t" + Math.round(x.get(key) * 1000.0) / 1000.0 + "   µg/m3" + "\n";
         }
 
-        return "Air quality measurements for sensor: " + sensorId + "\n" +
-                "O3: " + (aa / counter) + "\n" +
-                "SO2: " + (bb / counter) + "\n" +
-                "NO2 " + (cc / counter) + "\n" +
-                "PM10 " + (dd / counter) + "\n";
+        return sensorId + "\n" + result;
     }
 
+    private static List<Data> filterByAttributeId(List<Data> dataList, String attributeId) {
+        return dataList.stream()
+                .filter(d -> d.getAttributeID().equalsIgnoreCase(attributeId))
+                .collect(Collectors.toList());
+
+    }
+
+    private static String getAirQualityForAttribute(List<Data> dataList, String attributeID) {
+        List<Data> list = filterByAttributeId(dataList, attributeID);
+        HashMap<String, Double> x = new HashMap<>();
+        HashMap<String, Integer> counter = new HashMap<>();
+        for (Data data : list) {
+            if (x.containsKey(counter.get(data.getAttributeID()))) {
+                x.put(data.getAttributeID(), x.get(data.getAttributeID()) + data.getValue());
+                counter.put(data.getAttributeID(), counter.get(data.getAttributeID()) + 1);
+            } else {
+                x.put(data.getAttributeID(), data.getValue());
+                counter.put(data.getAttributeID(), 1);
+
+            }
+        }
+
+        String results = "";
+        for (String key : x.keySet()) {
+            x.put(key, x.get(key) / counter.get(key));
+            results += key + ": \t\t" + Math.round(x.get(key) * 1000.0) / 1000.0 + "µg/m3" + "\n";
+        }
+
+        return results;
+    }
+
+    /*
+     * 1. On a given territory get the mean air quality at a given time
+     * 2. On a given territory get the mean air quality on a given time span
+     * 
+     */
+
     private static Data createData(String[] metaData) {
+        // DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd
+        // HH:mm:ss.SSSSSSS");
         String timestamp = metaData[0];
+
         String sensorID = metaData[1];
         String attributeID = metaData[2];
         Double value = Double.parseDouble(metaData[3]);
         return new Data(timestamp, sensorID, attributeID, value);
+
     }
 
 }
