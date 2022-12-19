@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch RunIt",
+            "request": "launch",
+            "mainClass": "RunIt",
+            "projectName": "AIR-QUALITY-PROJECT_beb88bec"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"

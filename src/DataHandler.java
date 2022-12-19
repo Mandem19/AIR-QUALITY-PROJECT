@@ -4,15 +4,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class DataHandler {
 
-    private static final String PATH = "lib\\10sens.csv";
+    private static final String PATH = "lib\\1Year.csv";
 
-    private static final Date New = null;
+    // private static final Date New = null;
 
     private static List<Data> listOfDatas = new ArrayList<>();
 
@@ -48,7 +49,7 @@ public class DataHandler {
 
     }
 
-    private static List<Data> readDataFromCSV(String fileName) throws IOException {
+    static List<Data> readDataFromCSV(String fileName) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(new File(PATH)), "utf-8"));
         try {
             String line;
@@ -63,7 +64,6 @@ public class DataHandler {
         } finally {
             in.close();
         }
-        System.out.println("lwn " + listOfDatas.size());
         return listOfDatas;
     }
 
@@ -73,7 +73,7 @@ public class DataHandler {
                 .collect(Collectors.toList());
     }
 
-    private static String getAirQualityForSensor(List<Data> dataList, String sensorId) {
+    static String getAirQualityForSensor(List<Data> dataList, String sensorId) {
         List<Data> list = filterBySensorId(dataList, sensorId);
         HashMap<String, Double> x = new HashMap<>();
         HashMap<String, Integer> counter = new HashMap<>();
@@ -103,7 +103,7 @@ public class DataHandler {
 
     }
 
-    private static String getAirQualityForAttribute(List<Data> dataList, String attributeID) {
+    static String getAirQualityForAttribute(List<Data> dataList, String attributeID) {
         List<Data> list = filterByAttributeId(dataList, attributeID);
         HashMap<String, Double> x = new HashMap<>();
         HashMap<String, Integer> counter = new HashMap<>();
@@ -132,6 +132,42 @@ public class DataHandler {
      * 2. On a given territory get the mean air quality on a given time span
      * 
      */
+
+    static double getMeanForTimeSpan(LocalDateTime start, LocalDateTime end, String sensorID)
+            throws IOException {
+        List<Data> allData = readDataFromCSV(PATH);
+        double sum = 0;
+
+        for (Data data : allData) {
+            String currentDate = data.getTimestamp().split("\\.")[0];
+            LocalDateTime current = LocalDateTime.parse(currentDate);
+            if (current.equals(start) || (current.isAfter(start) && current.isBefore(end))) {
+                if (data.getSensorID().equalsIgnoreCase(sensorID)) {
+                    sum += data.getValue();
+                }
+            }
+        }
+
+        return sum;
+    }
+
+    static double getMeanForGivenTime(LocalDateTime start, String sensorID)
+            throws IOException {
+        List<Data> allData = readDataFromCSV(PATH);
+        double sum = 0;
+
+        for (Data data : allData) {
+            String currentDate = data.getTimestamp().split("\\.")[0];
+            LocalDateTime current = LocalDateTime.parse(currentDate);
+            if (current.equals(start)) {
+                if (data.getSensorID().equalsIgnoreCase(sensorID)) {
+                    sum += data.getValue();
+                }
+            }
+        }
+
+        return sum;
+    }
 
     private static Data createData(String[] metaData) {
         // DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd
