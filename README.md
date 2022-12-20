@@ -31,8 +31,11 @@ For App.java, Sensors.java, Attribute.java and DataHandler.java
 
 On terminal use the instructions:
 -cd src
+
 -javac App.java
+
 -javac Attributes.java
+
 -java App
 
 However if this does not work (there was some errors
