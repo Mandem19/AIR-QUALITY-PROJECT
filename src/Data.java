@@ -7,6 +7,7 @@ public class Data {
     private String attributeID;
     private Double value;
 
+    // Creates Data object with timestamp, sensorID, attributeID and value
     public Data(String timestamp, String sensorID, String attributeID, Double value) {
         this.timestamp = timestamp;
         this.sensorID = sensorID;
@@ -15,6 +16,7 @@ public class Data {
 
     }
 
+    // Getters and setters for the values
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
@@ -46,7 +48,9 @@ public class Data {
     public Double getValue() {
         return value;
     }
+    // Until here
 
+    // To string for Data objects, to print out the values accordingly.
     @Override
     public String toString() {
         return "Data [TimeStamp=" + timestamp + ", SensorID=" + sensorID + ", AttributeID=" + attributeID

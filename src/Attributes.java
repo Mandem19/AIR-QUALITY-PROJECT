@@ -3,13 +3,14 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Attributes extends AbstractDescription {
-
+    // Path for attritutetype.csv
     private static final String PATH = "lib\\AttributeType.csv";
     private String attributeID;
     private String unit;
 
     public Attributes(String attributeID) throws IOException {
-
+        // Creates attributes objects from CSV file,
+        // and sets the attributeID, unit and description.
         BufferedReader in = new BufferedReader(new FileReader(PATH));
         try {
 
@@ -20,22 +21,17 @@ public class Attributes extends AbstractDescription {
                  * Creates an array of 3 substrings,
                  * creates an array with 3 elements
                  */
-
+                // These three elements define the attributeID, unit and description
                 String firstElement = vals[0];
                 String secondElement = vals[1];
                 String thirdElement = vals[2];
-
+                // If the attributeId is the same as the one in the CSV file, set the
+                // attributeID, unit and description.
                 if (attributeID.equalsIgnoreCase(firstElement)) {
                     this.attributeID = firstElement;
                     this.unit = secondElement;
                     setDescription(thirdElement);
                 }
-
-                /*
-                 * Split the line at the comma so i have 2 numbers
-                 * Parse them both as numbers
-                 * create new object using those numbers
-                 */
 
             }
         } catch (Exception e) {
@@ -46,31 +42,14 @@ public class Attributes extends AbstractDescription {
 
     }
 
+    // Getter for attributeId
     public String getAttributeID() {
         return attributeID;
     }
 
+    // Getter for unit
     public String getUnit() {
         return unit;
-    }
-
-    public static void main(String[] args) throws IOException {
-        System.out.println("NEW TEST ");
-        Attributes a = new Attributes("O3");
-        Attributes b = new Attributes("SO2");
-        Attributes c = new Attributes("NO2");
-        Attributes d = new Attributes("PM10");
-
-        Attributes e = new Attributes("");
-        Attributes f = new Attributes("X");
-
-        System.out.println(a.getAttributeID() + " " + a.getUnit() + " " + a.getDescription());
-        System.out.println(b.getAttributeID() + " " + b.getUnit() + " " + b.getDescription());
-        System.out.println(c.getAttributeID() + " " + c.getUnit() + " " + c.getDescription());
-        System.out.println(d.getAttributeID() + " " + d.getUnit() + " " + d.getDescription());
-        System.out.println("-------------------------------------------------------------");
-        System.out.println(e.getAttributeID() + " " + e.getUnit() + " " + e.getDescription());
-        System.out.println(f.getAttributeID() + " " + f.getUnit() + " " + f.getDescription());
     }
 
 }
