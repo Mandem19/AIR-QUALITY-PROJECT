@@ -24,6 +24,14 @@ javac App.java
 javac Attributes.java
 java App
 
+- The path for MAC is different to windows. If it does not work and If using a MAC change the path to 
+
+- "AIR-QUALITY-PROJECT/lib/1Year.csv"; for App.java and DataHandler.java 
+- "AIR-QUALITY-PROJECT/lib/AttributeType.csv"; for Attribute.Java
+- "AIR-QUALITY-PROJECT/lib/SensorsData.csv"; for Sensors.java
+
+on private static final String PATH = for each of the files mentioned above
+
 However if this does not work (there was some errors
 calling the CSVS when compiled for some reason), However it does work in an IDE, if it does not work  then please open the
 project in an IDE and run App.java. User will be greeted
