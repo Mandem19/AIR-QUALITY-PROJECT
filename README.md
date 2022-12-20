@@ -19,13 +19,18 @@ This is a java object orientated software designed for an agency to
 
 ## How to Compile
 
-- The path for MAC is different to windows. If it does not work and If using a MAC change the path to 
+The path for MAC is different to windows. If it does not work and If using a MAC change the path to 
 
-- "AIR-QUALITY-PROJECT/lib/1Year.csv"; for App.java and DataHandler.java 
-- "AIR-QUALITY-PROJECT/lib/AttributeType.csv"; for Attribute.Java
-- "AIR-QUALITY-PROJECT/lib/SensorsData.csv"; for Sensors.java
+- private static final String PATH = "AIR-QUALITY-PROJECT/lib/1Year.csv";
+- private static final String PATH = "AIR-QUALITY-PROJECT/lib/SensorsData.csv";
+- private static final String PATH = "AIR-QUALITY-PROJECT/lib/AttributeType.csv";
+- private static final String PATH = "AIR-QUALITY-PROJECT/lib/1Year.csv";
 
-on private static final String PATH = for each of the files mentioned above
+on private static final String PATH = path name 
+
+etc 
+
+for each of the files mentioned above
 
 
 On terminal use the instructions:
