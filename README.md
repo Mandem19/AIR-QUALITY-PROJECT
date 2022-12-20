@@ -1,18 +1,30 @@
-## Getting Started
+# Air Quality Control
+## Software Engineering IST Course
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This is a project made for the Software Engineering Course in INSA LYON
+- By Jordan Ukawoko, Albin Perrsson, Luca Bova, Jeremy Demirel
 
-## Folder Structure
+- Object Orientated Programming using Java
+- Use of Abstract Classes
+- Reads from user input 
 
-The workspace contains two folders by default, where:
+## About
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+This is a java object orientated software designed for an agency to 
+- Compute the mean of air quality at a given timespan 
+- Identify sensors with similar behaviours based on the mean
+- Characterise air quality at a given place 
+- In our respitory also exists Class, Use Case & Sequence Diagrams
+- Test Cases exist within the code
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## How to Compile
+On terminal use the instructions:
+cd src
+javac App.java
+javac Attributes.java
+java App
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+However if this does not work (there was some errors
+calling the CSVS when compiled for some reason), However it does work in an IDE, if it does not work  then please open the
+project in an IDE and run App.java. User will be greeted
+with user inputs for what they want to do (get mean, Characterise air quality etc)
