@@ -19,7 +19,7 @@ This is a java object orientated software designed for an agency to
 
 ## How to Compile
 
-The path for MAC is different to windows. If it does not work and If using a MAC change the path to 
+The path for MAC is different to windows, we made this project using a windows machine. If CVS cannot be found when runnbing on a MAC machine change the paths to...
 
 - private static final String PATH = "AIR-QUALITY-PROJECT/lib/1Year.csv";
 - private static final String PATH = "AIR-QUALITY-PROJECT/lib/SensorsData.csv";
