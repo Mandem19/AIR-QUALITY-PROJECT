@@ -18,11 +18,6 @@ This is a java object orientated software designed for an agency to
 - Test Cases exist within the code
 
 ## How to Compile
-On terminal use the instructions:
-cd src
-javac App.java
-javac Attributes.java
-java App
 
 - The path for MAC is different to windows. If it does not work and If using a MAC change the path to 
 
@@ -32,7 +27,16 @@ java App
 
 on private static final String PATH = for each of the files mentioned above
 
+
+On terminal use the instructions:
+-cd src
+-javac App.java
+-javac Attributes.java
+-java App
+
 However if this does not work (there was some errors
 calling the CSVS when compiled for some reason), However it does work in an IDE, if it does not work  then please open the
 project in an IDE and run App.java. User will be greeted
 with user inputs for what they want to do (get mean, Characterise air quality etc)
+
+
