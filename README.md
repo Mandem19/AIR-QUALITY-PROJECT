@@ -26,7 +26,7 @@ The path for MAC is different to windows. If it does not work and If using a MAC
 - private static final String PATH = "AIR-QUALITY-PROJECT/lib/AttributeType.csv";
 - private static final String PATH = "AIR-QUALITY-PROJECT/lib/1Year.csv";
 
-on private static final String PATH = path name 
+For App.java, Sensors.java, Attribute.java and DataHandler.java
 
 etc 
 
