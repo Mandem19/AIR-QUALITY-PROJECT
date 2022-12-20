@@ -28,10 +28,6 @@ The path for MAC is different to windows. If it does not work and If using a MAC
 
 For App.java, Sensors.java, Attribute.java and DataHandler.java
 
-etc 
-
-for each of the files mentioned above
-
 
 On terminal use the instructions:
 -cd src
